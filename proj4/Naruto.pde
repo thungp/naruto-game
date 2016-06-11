@@ -66,7 +66,7 @@ class Naruto{
       varWidth = -10;
       narutoWidth = counter * spriteWidth + varWidth;
       
-      //rasengan_current++;
+      rasengan_current++;
     } 
     sX = narutoWidth - spriteWidth;
     copy(spriteSection, sX, sY, narutoWidth , narutoHeight, (int)position.x, (int)position.y, spriteWidth, narutoHeight);
