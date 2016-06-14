@@ -42,6 +42,14 @@ class Naruto{
     copy(spriteSection, sX, sY, narutoWidth , narutoHeight, (int)position.x, (int)position.y, spriteWidth, narutoHeight);
   }
   
+  void drawNarutoStanceFlipped(){
+    sX = 0;
+    sY = 0;
+    varWidth = 12;
+    narutoWidth = spriteWidth + varWidth;
+    copy(spriteSection, sX, sY, narutoWidth , narutoHeight, (int)position.x, (int)position.y, spriteWidth, narutoHeight);
+  }
+  
   void drawNarutoRasengan(int counter){
     
     int multiplier = 12;
