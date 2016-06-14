@@ -28,20 +28,24 @@ final int MAX_RASENGAN = 120;
 final int FRAME_RATE = 60;
 
 Naruto naruto;
+Naruto narutoEnemy;
+
 SpriteFrame sprite01;
+SpriteFrame sprite01Flipped;
 
 PImage[] rasengans = new PImage[MAX_RASENGAN];
 int rasengan_current = 0;
 
 int xRasengan = 0;
 int yRasengan = 0;
-int xNaruto = 0, yNaruto = 0;
+//int xNaruto = 0, yNaruto = 0; // I believe this should have gotten commented out with refator of global into Narto Class
 
 
 PImage background;
 
 PImage spriteRasengan;
 PImage spriteNarutoClone;
+PImage spriteNarutoCloneEnemy;
 
 int rWidth = 0;
 int rHeight = 0;
@@ -66,13 +70,22 @@ void setup() {
   frameRate(FRAME_RATE);
   background = loadImage("sand_background.png");
   sprite01 = new SpriteFrame("Naruto_04.png");
+ 
+  
+  //background = sprite01.getFlippedFull();
+  
   spriteNarutoClone = sprite01.get(0, 4540, 260, 60);// Naruto Clone
-
+  spriteNarutoCloneEnemy =sprite01.getFlipped(sprite01.getFlippedFull().width - 260,4540, 260, 60);// Naruto Clone Enemy
+  
+  
   naruto = new Naruto(spriteNarutoClone);
+  // Naruto(float x, float y, float vX, float vY, PImage sprite)
+  // this.position = new PVector(230, (background.height - (segmentHeight * 3 - 7)) );
+  narutoEnemy = new Naruto(.8 * background.width, (background.height - (segmentHeight * 3 - 7)), 0, 0,  spriteNarutoCloneEnemy);
   
   surface.setResizable(true);
   surface.setSize(background.width, background.height);
-  
+  rect(0,0, 260, 60);
   for(int i = 0; i < MAX_RASENGAN; i++){
     rasengans[i] = sprite01.get(0, 4150, 500, 70);// OOdama Rasengan
     dx[i] = (int)naruto.position.x + 15;
@@ -87,6 +100,7 @@ void setup() {
 
 void draw() {
   image(background, 0, 0);
+  rect(sprite01.getFlippedFull().width - 260,4540, 260, 60);
   background.resize(width, height);
   
   //drawNaruto(counter);
@@ -124,18 +138,23 @@ void draw() {
       case(RIGHT):
         PVector moveRight = new PVector(5, 0);
         naruto.moveHorizontal(moveRight);
+        narutoEnemy.drawNarutoStanceFlipped();
         break;
       
       case(LEFT):
         PVector moveLeft = new PVector(-5, 0);
         naruto.moveHorizontal(moveLeft);
+
         break;
       
     } // End Switch
+    narutoEnemy.drawNarutoStanceFlipped();
   } // End If
   else{
     naruto.velocity = new PVector(0, 0);
     naruto.drawNarutoStance(); 
+    
+    narutoEnemy.drawNarutoStanceFlipped();
   }
   counter++;
 }
