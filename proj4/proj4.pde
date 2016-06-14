@@ -25,11 +25,14 @@ branch issue#3
 5. (DV)(Issue#3) Corrected bug where Rasengan was being created at Naruto's original position.
 6. (DV) Added a jump keyPress to one of Naruto's movements
 
-
+branch issue#10
+1. (PT) Added reference to our our github repo that PT Created.
 // Reference
 // 1. https://www.youtube.com/watch?v=y6Lwzhc2-q0
 // 2. https://processing.org/discourse/beta/num_1270824860.html
 
+Git Hub Location:
+https://github.com/thungp/naruto-game
 
 ***********/
 // global variables
