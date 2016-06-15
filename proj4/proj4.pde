@@ -32,19 +32,24 @@ branch issue#10
 // 2. https://processing.org/discourse/beta/num_1270824860.html
 
 branch issue#7
-1. (PT) started with Naruto class, but modifying design for the class
+1. (PT) Implemented enemey Diedara. Started with Naruto class, but modifying design for the class
 to be aware of the whole sprite sheet so it can eventually encapsulate and hide
 various moves vice just be passed in the segment for one move. 
 Also class takes in both a look left and look right sprite sheet so that we
 don't have to wast processing time for tranforms and potential inherent delays when
-object is looking left or right.
+object is looking left or right. (only implemented looking left right now).
 Will also need and to pass into each class a reference to the other object
-so that each class can detect when they pass each other so they can automatically turn around. 
+so that each class can detect when they pass each other so they can automatically turn around.
+2. (PT) Implemented a circle/rectangle detection algorithm to detect when rasengan hits Dediara
+3. (PT) Implemented Heavy Damage 2 when gets hit with Rasengan. Lots of assumptions right now.
 
 Git Hub Location:
 https://github.com/thungp/naruto-game
 
 ***********/
+
+import java.lang.Math;
+
 // global variables
 final int FRAME_RATE = 60;
 
@@ -142,8 +147,22 @@ void draw() {
   }
   
   // draw characters
-  deidara.drawDeidaraStance();
+  deidara.drawDeidara();
+  
+  // collision detection
+  collisionDetection();
+  
+  }
+
+  void collisionDetection(){
+  // detect if Naruto Rasengan hits enemy
+  if(!rasengans.isEmpty()){
+    deidara.checkCollision(rasengans.get(0));
+  }
+
 }
+
+
 
 void drawGrid(int cols, int rows, int strokeColor){
  int colSpan = width/cols;

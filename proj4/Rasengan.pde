@@ -1,4 +1,4 @@
-class Rasengan{
+class Rasengan implements GameObjectIF, CircleIF{
   
   PImage sprite;
   
@@ -10,6 +10,7 @@ class Rasengan{
   int rWidth;
   int rHeight;
   int timer = 1;
+  Dimension objDim;
   
   Rasengan(PImage sprite){
     this.sprite  = sprite;
@@ -17,6 +18,7 @@ class Rasengan{
     this.rHeight = sprite.height;    
     this.position = new PVector(0, 0);
     this.velocity = new PVector(0, 0);
+    objDim = new Dimension((int) rWidth / 2, 0);
   }
   
   void shootRasengan(PVector position, int counter){
@@ -40,4 +42,20 @@ class Rasengan{
     this.position.y += random(-5, 5);
     copy(sprite, xRasengan, yRasengan, rWidth, rHeight, (int)this.position.x, (int)this.position.y, this.rWidth, this.rHeight);
   }
+  
+  public void checkCollision(GameObjectIF gameObject){
+   // need to implement 
+  }
+  
+  public void handleCollision(GameObjectIF gameObject){
+    
+  }
+  public PVector getPosition() {
+    return position; 
+  }
+  
+  public Dimension getDimension(){
+    return objDim;
+  }
+  
 }
