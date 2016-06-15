@@ -31,6 +31,16 @@ branch issue#10
 // 1. https://www.youtube.com/watch?v=y6Lwzhc2-q0
 // 2. https://processing.org/discourse/beta/num_1270824860.html
 
+branch issue#7
+1. (PT) started with Naruto class, but modifying design for the class
+to be aware of the whole sprite sheet so it can eventually encapsulate and hide
+various moves vice just be passed in the segment for one move. 
+Also class takes in both a look left and look right sprite sheet so that we
+don't have to wast processing time for tranforms and potential inherent delays when
+object is looking left or right.
+Will also need and to pass into each class a reference to the other object
+so that each class can detect when they pass each other so they can automatically turn around. 
+
 Git Hub Location:
 https://github.com/thungp/naruto-game
 
@@ -39,7 +49,9 @@ https://github.com/thungp/naruto-game
 final int FRAME_RATE = 60;
 
 Naruto naruto;
+Deidara deidara;
 SpriteFrame sprite01;
+SpriteFrame spriteDeidara;
 
 ArrayList<Rasengan> rasengans = new ArrayList<Rasengan>();
 PImage background;
@@ -53,10 +65,12 @@ void setup() {
   frameRate(FRAME_RATE);
   background = loadImage("sand_background.png");
   sprite01   = new SpriteFrame("Naruto_04.png");
+  
   spriteNarutoShoot = sprite01.get(0, 4540, 260, 60);  // Naruto Shooting
   spriteRasengan    = sprite01.get(0, 4150, 500, 70);  // OOdama Rasengan
   
   naruto = new Naruto(spriteNarutoShoot);  
+  deidara = new Deidara(loadImage("Deidara_Sprites_Look_Right.png"), loadImage("Deidara_Sprites_Look_Left.png"));
   
   surface.setResizable(true);
   surface.setSize(background.width, background.height);
@@ -100,6 +114,8 @@ void draw() {
         break;
       
     } // End Switch
+    
+    
   } // End If
   else{
     // Reset Naruto's x speed to zero
@@ -124,6 +140,9 @@ void draw() {
       rasengans.get(0).update(counter); 
     }
   }
+  
+  // draw characters
+  deidara.drawDeidaraStance();
 }
 
 void drawGrid(int cols, int rows, int strokeColor){
