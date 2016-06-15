@@ -51,33 +51,7 @@ class Deidara implements GameObjectIF, RectangleIF {
     this.drawDeidaraStance(); 
     objDim = new Dimension(spriteWidth, deidaraHeight);
   }
-  /*
-  Deidara(float x, float y, float vX, float vY, PImage sprite){
-    this.position = new PVector(x, y);
-    this.velocity = new PVector(vX, vY);
-    this.sprite = sprite;
-    this.drawDeidaraStance();
-    
-  } */  // refactor later if useful
-  
-  /*
-  Deidara(PImage sprite){
-    this();
-    this.sprite = sprite;
-  }
-  
-  void update(int counter){
-    if (this.shoot){ 
-      drawDeidaraRasengan(counter);
-    }
-    else{
-      this.position.add(this.velocity);
-      if(this.position.y < startingHeight){
-        this.position.add(new PVector(0, 3));
-      }
-      drawDeidaraStance();
-    }
-  } */ // refactor later if useful
+
   void drawDeidara(){
    
     switch(state)
@@ -138,42 +112,6 @@ class Deidara implements GameObjectIF, RectangleIF {
   
   }
   
-
-  /*
-  void drawDeidaraRasengan(int counter){
-    shoot = true;
-    int multiplier = 12;
-    if(counter % multiplier * 1 == 0){ 
-      varWidth = -12;
-      deidaraWidth = counter * spriteWidth + varWidth;
-      this.position.x -= 10;
-    }    
-    if(counter % multiplier * 2 == 0){ 
-      varWidth = -10;
-      deidaraWidth = counter * spriteWidth + varWidth;
-      this.position.x += 10;
-    } 
-    if(counter % multiplier * 3 == 0){
-      varWidth = 0;
-      deidaraWidth = counter * spriteWidth + varWidth;
-    }
-    if(counter % multiplier * 4 == 0){ 
-      varWidth = -10;
-      deidaraWidth = counter * spriteWidth + varWidth;
-    } 
-    if(counter % multiplier * 5 == 0){ 
-      varWidth = -10;
-      deidaraWidth = counter * spriteWidth + varWidth;
-      shoot = false;
-    } 
-    sX = deidaraWidth - spriteWidth;
-    copy(sprite, sX, sY, deidaraWidth , deidaraHeight, (int)this.position.x, (int)this.position.y, spriteWidth, deidaraHeight);
-    sX = 0;
-    
-  } */  // refactor only when needed
- 
-  
- 
   // This probably doesn't belong in this class but in a separate utility class that takes in both objects
   public void checkCollision(GameObjectIF gameObject){
     // check to see if there is a collision with this object and list of other objects.
