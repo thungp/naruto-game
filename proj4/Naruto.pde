@@ -49,7 +49,7 @@ class Naruto{
     sY = 0;
     varWidth = -12;
     narutoWidth = spriteWidth + varWidth;
-    copy(sprite, sX, sY, narutoWidth , narutoHeight, (int)this.position.x, (int)this.position.y, spriteWidth, narutoHeight);
+    copy(sprite, sX, sY, narutoWidth , narutoHeight, (int)this.position.x, (int)this.position.y, spriteWidth * 2, narutoHeight * 2);
   }
   
   void drawNarutoRasengan(int counter){
@@ -79,7 +79,7 @@ class Naruto{
       shoot = false;
     } 
     sX = narutoWidth - spriteWidth;
-    copy(sprite, sX, sY, narutoWidth , narutoHeight, (int)this.position.x, (int)this.position.y, spriteWidth, narutoHeight);
+    copy(sprite, sX, sY, narutoWidth , narutoHeight, (int)this.position.x, (int)this.position.y, spriteWidth * 2, narutoHeight * 2);
     sX = 0;
     
   }

@@ -5,6 +5,8 @@ class Deidara implements GameObjectIF, RectangleIF {
   PImage spriteLL;
   Dimension objDim;
   
+  float scaleFactor = 2.1;
+  
   int state = CharacterState.STANCE_STATE;
   
   int damageCountDownCounter = 0;
@@ -98,7 +100,7 @@ class Deidara implements GameObjectIF, RectangleIF {
     //rect(0,0, (int) segmentStanceWidth/segmentStanceNumFrames, deidaraHeight);
     
     PImage firstFrame = spriteSegment.get(0, 0, (int) segmentStanceWidth / segmentStanceNumFrames, deidaraHeight);
-    copy(firstFrame, sX, sY, deidaraWidth , deidaraHeight, (int)this.position.x, (int)this.position.y, spriteWidth, deidaraHeight);
+    copy(firstFrame, sX, sY, deidaraWidth , deidaraHeight, (int)this.position.x, (int)this.position.y, (int) (spriteWidth * scaleFactor), (int) (deidaraHeight * scaleFactor));
   }
 
   // 1st frame is frame 1, second frame is frame 0 when looking left.
@@ -108,7 +110,7 @@ class Deidara implements GameObjectIF, RectangleIF {
     PImage spriteSegment = spriteLL.get(segmentHeavyDamage2XLL, segmentHeavyDamage2YLL, segmentHeavyDamage2Width, segmentHeavyDamage2Height);
    
     PImage firstFrame = spriteSegment.get(0 + deidaraWidth * frame, 0, (int) deidaraWidth, segmentHeavyDamage2Height);
-    copy(firstFrame, sX, sY, segmentHeavyDamage2Width , segmentHeavyDamage2Height, (int)this.position.x, (int)this.position.y, segmentHeavyDamage2Width, segmentHeavyDamage2Height);
+    copy(firstFrame, sX, sY, segmentHeavyDamage2Width , segmentHeavyDamage2Height, (int)this.position.x, (int)this.position.y, (int) (segmentHeavyDamage2Width * scaleFactor), (int) (segmentHeavyDamage2Height * scaleFactor));
   
   }
   
