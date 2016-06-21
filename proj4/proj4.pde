@@ -44,6 +44,10 @@ so that each class can detect when they pass each other so they can automaticall
 3. (PT) Implemented Heavy Damage 2 when gets hit with Rasengan. Lots of assumptions right now.
 4. (PT) Scaled up the characters so they are a little more proportional to the screen size. 
 5. (PT) Made it so that Deidara faces Naruto when their x positions cross.
+6. (PT) also modified the original Deidara sprite sheet to have background already have an alpha channel with full transparency.
+I used gimp using this link as a reference: https://www.youtube.com/watch?v=AC5vdKuwTp0,
+however, when I tried it with the Naruto_04.png, it didn't work out so well. You get better quality with 
+the way we do it in code. the flipping didn't work out so well in code when I tried it. 
 
 Git Hub Location:
 https://github.com/thungp/naruto-game
