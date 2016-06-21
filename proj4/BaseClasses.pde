@@ -11,6 +11,8 @@ public interface GameObjectIF {
   public void handleCollision(GameObjectIF gameObject);
   public PVector getPosition();
   public Dimension getDimension();
+  public void setOpponent(GameObjectIF opponent);
+  public GameObjectIF getOpponent();
   
 }
 

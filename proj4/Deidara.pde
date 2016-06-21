@@ -36,6 +36,9 @@ class Deidara implements GameObjectIF, RectangleIF {
   int segmentHeavyDamage2NumFrames = 2;
   
   boolean shoot = false;
+  boolean isLookingLeft = true;
+  
+  public GameObjectIF opponent;
   
   /*
   Deidara(){
@@ -81,16 +84,40 @@ class Deidara implements GameObjectIF, RectangleIF {
     } 
   }
   
+  void adjustOrientation() {
+    if(position == null) {
+      println("postion in Deidara = null"); // debug code
+    }
+    
+    if(opponent == null) {
+      println("oppnent is null");  //debug code
+      
+    }
+    
+    if( opponent == null || position.x >= opponent.getPosition().x){  // for some reason opponent was null initially before this call
+      //Need to make charactor look left
+      isLookingLeft = true;
+    } else {
+      // make character look right.
+       isLookingLeft = false;
+    }
+  }
+  
   
   void drawDeidaraStance(){
     // eventually need to have if figure out dynamically if it wants to look lef or right.
     // for now hard code to one look
- 
+    adjustOrientation();
     sX = 0;
     sY = 0;
     //varWidth = -12;
     deidaraWidth = (int) segmentStanceWidth/segmentStanceNumFrames;
-    PImage spriteSegment = spriteLL.get(segmentStanceXLL, segmentStanceYLL, segmentStanceWidth, deidaraHeight);
+    PImage spriteSegment;
+    if(isLookingLeft) {
+      spriteSegment = spriteLL.get(segmentStanceXLL, segmentStanceYLL, segmentStanceWidth, deidaraHeight);
+    } else {
+      spriteSegment = spriteLR.get(segmentStanceXLR, segmentStanceYLR, segmentStanceWidth, deidaraHeight);
+    }
     // for now assme static, but eventually stand still stance could show
     // some animation like heavy breathing.
     // get first frame for now
@@ -140,6 +167,14 @@ class Deidara implements GameObjectIF, RectangleIF {
       damageCountDownCounter = 120;
       
     }
+  }
+  
+  public GameObjectIF getOpponent(){
+    return opponent;
+  }
+  
+  public void setOpponent(GameObjectIF opponent){
+    this.opponent = opponent; 
   }
   
   public PVector getPosition(){

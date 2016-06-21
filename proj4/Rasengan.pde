@@ -11,6 +11,7 @@ class Rasengan implements GameObjectIF, CircleIF{
   int rHeight;
   int timer = 1;
   Dimension objDim;
+  public GameObjectIF opponent;
   
   Rasengan(PImage sprite){
     this.sprite  = sprite;
@@ -56,6 +57,14 @@ class Rasengan implements GameObjectIF, CircleIF{
   
   public Dimension getDimension(){
     return objDim;
+  }
+  
+  public GameObjectIF getOpponent(){
+    return opponent;
+  }
+  
+  public void setOpponent(GameObjectIF opponent){
+    this.opponent = opponent; 
   }
   
 }

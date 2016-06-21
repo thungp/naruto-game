@@ -42,6 +42,8 @@ Will also need and to pass into each class a reference to the other object
 so that each class can detect when they pass each other so they can automatically turn around.
 2. (PT) Implemented a circle/rectangle detection algorithm to detect when rasengan hits Dediara
 3. (PT) Implemented Heavy Damage 2 when gets hit with Rasengan. Lots of assumptions right now.
+4. (PT) Scaled up the characters so they are a little more proportional to the screen size. 
+5. (PT) Made it so that Deidara faces Naruto when their x positions cross.
 
 Git Hub Location:
 https://github.com/thungp/naruto-game
@@ -76,6 +78,12 @@ void setup() {
   
   naruto = new Naruto(spriteNarutoShoot);  
   deidara = new Deidara(loadImage("Deidara_Sprites_Look_Right.png"), loadImage("Deidara_Sprites_Look_Left.png"));
+  
+  naruto.setOpponent(deidara);
+  println("I expect to see this");
+  deidara.setOpponent(naruto);
+  println("I expect I shoulnd't see this");
+  
   
   surface.setResizable(true);
   surface.setSize(background.width, background.height);
