@@ -1,6 +1,6 @@
 
 //Author: Peter Thung and Daniel Vance
-//Project 4
+//Assignment 5 (continuation of assignment 4)
 
 /************
 
