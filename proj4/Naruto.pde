@@ -1,4 +1,4 @@
-class Naruto{
+class Naruto implements GameObjectIF{
   PVector position;
   PVector velocity;
   PImage sprite;
@@ -11,11 +11,18 @@ class Naruto{
   int startingHeight = background.height - (narutoHeight * 3);
   boolean shoot = false;
   
+  float scaleFactor = 2.0;
+  
+  public GameObjectIF opponent;
+  
+  Dimension objDim;
+  
   Naruto(){
     this.position = new PVector(230, startingHeight );
     this.velocity = new PVector(0, 0);
     this.sprite = loadImage("Naruto_04.png");
-    this.drawNarutoStance();    
+    this.drawNarutoStance();
+    objDim = new Dimension(spriteWidth, narutoHeight);
   }
   
   Naruto(float x, float y, float vX, float vY, PImage sprite){
@@ -23,7 +30,7 @@ class Naruto{
     this.velocity = new PVector(vX, vY);
     this.sprite = sprite;
     this.drawNarutoStance();
-    
+    objDim = new Dimension(spriteWidth, narutoHeight);
   }
   
   Naruto(PImage sprite){
@@ -49,7 +56,7 @@ class Naruto{
     sY = 0;
     varWidth = -12;
     narutoWidth = spriteWidth + varWidth;
-    copy(sprite, sX, sY, narutoWidth , narutoHeight, (int)this.position.x, (int)this.position.y, spriteWidth, narutoHeight);
+    copy(sprite, sX, sY, narutoWidth , narutoHeight, (int)this.position.x, (int)this.position.y, (int)(spriteWidth * scaleFactor), (int)(narutoHeight * scaleFactor));
   }
   
   void drawNarutoRasengan(int counter){
@@ -79,9 +86,25 @@ class Naruto{
       shoot = false;
     } 
     sX = narutoWidth - spriteWidth;
-    copy(sprite, sX, sY, narutoWidth , narutoHeight, (int)this.position.x, (int)this.position.y, spriteWidth, narutoHeight);
+    copy(sprite, sX, sY, narutoWidth , narutoHeight, (int)this.position.x, (int)this.position.y, (int) (spriteWidth * scaleFactor), (int) (narutoHeight * scaleFactor));
     sX = 0;
     
+  }
+  
+  public void checkCollision(GameObjectIF gameObject){
+   // May need to implement later. 
+  }
+  
+  public void handleCollision(GameObjectIF gameObject){
+   // Evaluate if it needs implementation. 
+  }
+  
+  public Dimension getDimension(){
+    return objDim;
+  }
+  
+  public PVector getPosition(){
+    return  position;
   }
   
   void moveHorizontal(PVector move){
@@ -91,4 +114,13 @@ class Naruto{
   void moveVertical(PVector jump){
    this.position.add(jump);
   }
+  
+  public GameObjectIF getOpponent(){
+    return opponent;
+  }
+  
+  public void setOpponent(GameObjectIF opponent){
+    this.opponent = opponent; 
+  }
+  
 }

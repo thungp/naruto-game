@@ -22,6 +22,61 @@ PImage transparentizeBackground(PImage p, color col) {
 }
 
 
+boolean intersects(GameObjectIF obj1, GameObjectIF obj2){
+  // ref http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
+  int circDistx;
+  int circDisty;
+  int rectCenterX;
+  int rectCenterY;
+  int rectHeight;
+  int rectWidth;
+  GameObjectIF circleObj;
+  GameObjectIF rectangleObj;
+  
+  // detects collision of circle and rectangle
+  if( (obj1 instanceof CircleIF && obj2 instanceof RectangleIF) ||
+       (obj2 instanceof CircleIF && obj1 instanceof RectangleIF)) {
+     
+     if(obj1 instanceof CircleIF && obj2 instanceof RectangleIF) {
+       circleObj = obj1;
+       rectangleObj = obj2;
+     } else {
+       circleObj = obj2;
+       rectangleObj = obj1;
+     }
+     circleObj = obj1;
+     rectangleObj = obj2;
+    
+     // obj1 is a Circle obj2 is a square
+     Dimension rectDimension = rectangleObj.getDimension();
+     rectWidth = rectDimension.getDimWidth(); 
+     int rectHalfWidth = rectWidth/2;
+     PVector rectPostionVector = obj2.getPosition(); 
+     rectCenterX = (int)rectPostionVector.x + rectHalfWidth;
+  
+     rectHeight = rectDimension.getDimHeight(); 
+     int rectHalfHeight = rectHeight/2;
+  
+     rectCenterY = (int)rectPostionVector.y  + rectHalfHeight;
+    
+     circDistx = abs((int) circleObj.getPosition().x - rectCenterX); 
+     circDisty = abs((int) circleObj.getPosition().y - rectCenterY);
+     if(circDistx > (rectHalfWidth + (int) circleObj.getDimension().getDimWidth()) ) {return false;}
+     if(circDisty > (rectHalfHeight + (int) circleObj.getDimension().getDimHeight()) ) {return false;}
+     
+     if(circDistx <= (rectHalfWidth)) { return true; }
+     if(circDisty <= (rectHalfHeight))  {return true;}
+     
+     int cornerDistanceSq = (int) Math.pow((circDistx - rectHalfWidth), 2) + (int) Math.pow((circDisty - rectHalfHeight), 2);
+  
+     return (cornerDistanceSq <= (int) Math.pow( circleObj.getDimension().getDimWidth(), 2) );
+     
+  }
+  return false;
+}
+
+
+
 // level starts with 0 and goes up, 
 PImage blurImg(PImage p, int level) {
 
